@@ -29,6 +29,8 @@ RUN mkdir -p /camel && \
 COPY pom.xml /camel/
 COPY src/ /camel/
 COPY contrib/settings.xml $HOME/.m2/
+
+ARG something 1
 COPY .s2i/bin/ $S2I_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /camel && \
