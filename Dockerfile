@@ -39,3 +39,5 @@ RUN chown -R 1001:0 /camel/
 RUN chmod -R +x $STI_SCRIPTS_PATH
 
 USER 1001
+
+CMD $STI_SCRIPTS_PATH/usage
