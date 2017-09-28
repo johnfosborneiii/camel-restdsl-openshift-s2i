@@ -3,4 +3,6 @@
 set -e
 
 echo "---> Starting Spring Boot application"
+
+cd /usr/local/s2i
 mvn spring-boot:run
