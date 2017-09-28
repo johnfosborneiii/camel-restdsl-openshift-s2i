@@ -12,7 +12,7 @@ EXPOSE 8080
 
 ENV MAVEN_VERSION=3.3.9
 ENV JAVA_VERSON 1.8.0
-ENV STI_SCRIPTS_PATH=/usr/bin/s2i/
+ENV STI_SCRIPTS_PATH=/usr/bin/s2i
 
 RUN yum install -y curl && \
   yum install -y java-$JAVA_VERSON-openjdk java-$JAVA_VERSON-openjdk-devel && \
@@ -28,6 +28,7 @@ COPY contrib/settings.xml $HOME/.m2/
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /opt/app-root
+RUN chmod -R +x $STI_SCRIPTS_PATH
 
 USER 1001
 CMD $STI_SCRIPTS_PATH/usage
