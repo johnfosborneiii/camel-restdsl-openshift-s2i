@@ -13,7 +13,7 @@ EXPOSE 8080
 
 ENV MAVEN_VERSION=3.3.9
 ENV JAVA_VERSON 1.8.0
-ENV STI_SCRIPTS_PATH=/usr/bin/s2i
+ENV S2I_SCRIPTS_PATH=/opt/s2i/destination
 
 RUN yum install -y curl && \
   yum install -y java-$JAVA_VERSON-openjdk java-$JAVA_VERSON-openjdk-devel && \
@@ -24,20 +24,21 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 RUN mkdir -p /camel && \
-    mkdir -p /opt/s2i/destination
+    mkdir -p $S2I_SCRIPTS_PATH
 
 COPY pom.xml /camel/
 COPY src/ /camel/
 COPY contrib/settings.xml $HOME/.m2/
-COPY .s2i/bin/ $STI_SCRIPTS_PATH
+COPY .s2i/bin/ $S2I_SCRIPTS_PATH
 
-RUN chown -R 1001:0 /camel && chown -R 1001:0 $HOME && \
+RUN chown -R 1001:0 /camel && \
     chmod -R ug+rw /camel && \
-    chmod -R g+rwx /opt/s2i/destination
+    chown -R 1001:0 $HOME && \
+    chmod -R g+rwx $S2I_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /camel/
-RUN chmod -R +x $STI_SCRIPTS_PATH
+RUN chmod -R +x $S2I_SCRIPTS_PATH
 
 USER 1001
 
-CMD $STI_SCRIPTS_PATH/usage
+CMD $S2I_SCRIPTS_PATH/usage
