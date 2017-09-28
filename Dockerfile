@@ -24,20 +24,19 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 RUN mkdir -p /camel && \
+    mkdir -p $HOME/.m2 && \
     mkdir -p $STI_SCRIPTS_PATH
 
 COPY pom.xml /camel/
 COPY src/ /camel/
 COPY contrib/settings.xml $HOME/.m2/
-
 COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /camel && \
-    chmod -R ug+rw /camel && \
+    chmod -R ug+rwx /camel && \
     chown -R 1001:0 $HOME && \
-    chmod -R g+rwx $STI_SCRIPTS_PATH
-
-RUN chown -R 1001:0 /camel/
-RUN chmod -R +x $STI_SCRIPTS_PATH
+    chmod -R ug+rwx $HOME && \
+    chown -R 1001:0 $STI_SCRIPTS_PATH && \
+    chmod -R ug+rwx $STI_SCRIPTS_PATH
 
 USER 1001
