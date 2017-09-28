@@ -12,9 +12,9 @@ EXPOSE 8080
 
 ENV MAVEN_VERSION=3.3.9
 ENV JAVA_VERSON 1.8.0
+ENV STI_SCRIPTS_PATH=/usr/bin/s2i/
 
-RUN yum update -y && \
-  yum install -y curl && \
+RUN yum install -y curl && \
   yum install -y java-$JAVA_VERSON-openjdk java-$JAVA_VERSON-openjdk-devel && \
   yum clean all
 
@@ -24,9 +24,8 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
 
 COPY pom.xml /opt/app-root/
 COPY src/ /opt/app-root/
-COPY ./contrib/settings.xml $HOME/.m2/
-
-COPY ./s2i/bin/ $STI_SCRIPTS_PATH
+COPY contrib/settings.xml $HOME/.m2/
+COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /opt/app-root
 
