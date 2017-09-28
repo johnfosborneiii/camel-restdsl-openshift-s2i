@@ -33,7 +33,7 @@ COPY .s2i/bin/ $STI_SCRIPTS_PATH
 
 RUN chown -R 1001:0 /camel && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /camel && \
-    chmod -R g+rwx /opt/s2i/destination \
+    chmod -R g+rwx /opt/s2i/destination
 
 RUN chown -R 1001:0 /camel/
 RUN chmod -R +x $STI_SCRIPTS_PATH
