@@ -31,4 +31,3 @@ RUN chown -R 1001:0 /opt/app-root
 RUN chmod -R +x $STI_SCRIPTS_PATH
 
 USER 1001
-CMD $STI_SCRIPTS_PATH/usage
