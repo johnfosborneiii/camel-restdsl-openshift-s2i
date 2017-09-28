@@ -17,9 +17,7 @@ RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-
     (curl -v https://www.apache.org/dist/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz | \
     tar -zx -C /usr/local) && \
     ln -sf /usr/local/apache-maven-$MAVEN_VERSION/bin/mvn /usr/local/bin/mvn && \
-    mkdir -p $HOME/.m2 && \
-    mkdir -p /wildfly && \
-    mkdir -p /opt/s2i/destination
+    mkdir -p $HOME/.m2
 
 # Although this is defined in openshift/base-centos7 image it's repeated here
 # to make it clear why the following COPY operation is happening
@@ -33,7 +31,7 @@ COPY ./contrib/settings.xml $HOME/.m2/
 
 RUN chown -R 1001:0 /opt/app-root && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /opt/app-root && \
-    chmod -R g+rw /opt/s2i/destination
+    chmod -R g+rw /usr/local/s2i 
 
 # Drop the root user and make the content of /opt/app-root owned by user 1001
 RUN chown -R 1001:1001 /opt/app-root
