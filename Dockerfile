@@ -11,7 +11,9 @@ LABEL io.k8s.description="Camel REST DSL S2I" \
 EXPOSE 8080
 
 ENV MAVEN_VERSION=3.3.9
-ENV JAVA_VERSON 1.8.0
+ENV JAVA_VERSON=1.8.0
+ENV WORKDIR=/opt/app-root/src
+ENV HOME=/opt/app-root/src
 
 RUN yum install -y curl && \
   yum install -y java-$JAVA_VERSON-openjdk java-$JAVA_VERSON-openjdk-devel && \
