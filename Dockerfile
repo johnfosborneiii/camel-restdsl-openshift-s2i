@@ -21,19 +21,16 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
   && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-RUN mkdir -p /camel && \
-    mkdir -p $HOME/.m2
+RUN mkdir -p $HOME/.m2
 
 COPY pom.xml $HOME
-COPY src $HOME
+COPY src $HOME/
 COPY contrib/settings.xml $HOME/.m2/
 COPY .s2i/bin/ /usr/libexec/s2i/
 
-RUN chown -R 1001:0 /camel && \
-    chmod -R ug+rwx /camel && \
-    chown -R 1001:0 $HOME && \
+RUN chown -R default:0 $HOME && \
     chmod -R ug+rwx $HOME && \
-    chown -R 1001:0 /usr/libexec/s2i/ && \
+    chown -R default:0 /usr/libexec/s2i/ && \
     chmod -R ug+rwx /usr/libexec/s2i/
 
-USER 1001
+USER default
