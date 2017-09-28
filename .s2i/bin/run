@@ -2,5 +2,4 @@
 
 set -e
 echo "---> Starting Spring Boot application"
-cd /camel/
 exec mvn spring-boot:run
