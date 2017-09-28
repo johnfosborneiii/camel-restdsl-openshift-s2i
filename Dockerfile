@@ -22,7 +22,7 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
 RUN mkdir -p /camel && \
-    mkdir -p $HOME/.m2 && \
+    mkdir -p $HOME/.m2
 
 COPY pom.xml $HOME
 COPY src $HOME
