@@ -5,6 +5,7 @@ MAINTAINER John Osborne <johnfosborneiii@gmail.com>
 # Set labels used in OpenShift to describe the builder images
 LABEL io.k8s.description="Camel REST DSL S2I" \
       io.openshift.expose-services="8080:http" \
+      io.openshift.s2i.destination="/opt/s2i/destination" \
       io.openshift.tags="builder,camel,rest"
 
 # Specify the ports the final image will expose
@@ -22,7 +23,8 @@ RUN curl -fsSL https://archive.apache.org/dist/maven/maven-3/$MAVEN_VERSION/bina
   && mv /usr/share/apache-maven-$MAVEN_VERSION /usr/share/maven \
   && ln -s /usr/share/maven/bin/mvn /usr/bin/mvn
 
-RUN mkdir -p /camel
+RUN mkdir -p /camel && \
+    mkdir -p /opt/s2i/destination
 
 RUN chown -R 1001:0 /camel && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /camel && \
