@@ -31,9 +31,6 @@ COPY pom.xml /opt/app-root/
 COPY src/ /opt/app-root/
 COPY ./contrib/settings.xml $HOME/.m2/
 
-# Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
-COPY ./s2i/bin/ $STI_SCRIPTS_PATH
-
 RUN chown -R 1001:0 /opt/app-root && chown -R 1001:0 $HOME && \
     chmod -R ug+rw /opt/appr-root && \
     chmod -R g+rw /opt/s2i/destination
