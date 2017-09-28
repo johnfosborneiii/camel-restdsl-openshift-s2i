@@ -7,8 +7,7 @@ LABEL io.k8s.description="Camel REST DSL S2I" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,camel,rest"
 
-RUN yum -y update && \
-    yum install -y maven && \
+RUN yum install -y maven && \
     yum clean all -y
 
 # Defines the location of the S2I
