@@ -7,6 +7,8 @@ LABEL io.k8s.description="Camel REST DSL S2I" \
       io.openshift.expose-services="8080:http" \
       io.openshift.tags="builder,camel,rest"
 
+ENV MAVEN_VERSION=3.3.9
+
 # Install Maven, Wildfly 8
 RUN INSTALL_PKGS="tar unzip bc which lsof java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
     yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
