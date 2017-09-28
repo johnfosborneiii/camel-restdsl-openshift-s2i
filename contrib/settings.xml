@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <localRepository>/home/josborne/.m2/repository</localRepository>
+  <servers>
+    <server>
+      <username>josborne</username>
+      <password>redhat</password>
+      <id>fabric8.console</id>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+          <id>redhat-ga-all-repository</id>
+          <name>Red Hat GA repository (all)</name>
+          <url>http://maven.repository.redhat.com/ga/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+          <id>redhat-ga-all-repository</id>
+          <name>Red Hat GA repository (all)</name>
+          <url>http://maven.repository.redhat.com/ga/</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>redhat-ga-all-repository</id>
+    </profile>
+    <profile>
+      <repositories>
+        <repository>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+          <id>redhat-earlyaccess-all-repository</id>
+          <name>Red Hat Early Access repository (all)</name>
+          <url>http://maven.repository.redhat.com/earlyaccess/all/</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <releases>
+            <updatePolicy>never</updatePolicy>
+          </releases>
+          <snapshots>
+            <enabled>false</enabled>
+            <updatePolicy>never</updatePolicy>
+          </snapshots>
+          <id>redhat-earlyaccess-all-repository</id>
+          <name>Red Hat Early Access repository (all)</name>
+          <url>http://maven.repository.redhat.com/earlyaccess/all</url>
+        </pluginRepository>
+      </pluginRepositories>
+      <id>redhat-earlyaccess-all-repository</id>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>redhat-ga-all-repository</activeProfile>
+    <activeProfile>redhat-earlyaccess-all-repository</activeProfile>
+  </activeProfiles>
+  <pluginGroups>
+    <pluginGroup>org.apache.maven.plugins</pluginGroup>
+    <pluginGroup>org.codehaus.mojo</pluginGroup>
+  </pluginGroups>
+</settings>
