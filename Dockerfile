@@ -32,7 +32,7 @@ COPY src/ /opt/app-root/
 COPY ./contrib/settings.xml $HOME/.m2/
 
 RUN chown -R 1001:0 /opt/app-root && chown -R 1001:0 $HOME && \
-    chmod -R ug+rw /opt/appr-root && \
+    chmod -R ug+rw /opt/app-root && \
     chmod -R g+rw /opt/s2i/destination
 
 # Drop the root user and make the content of /opt/app-root owned by user 1001
